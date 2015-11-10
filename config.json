@@ -1,0 +1,16 @@
+{
+  "twitter": {
+    "consumer_key": "nowUPLwMopITYkGJka0l2FpnZ",
+    "consumer_secret": "PHUM4FPtXD2Kk749Y19w3g3cu58cCthfwhYLseLD8zFqjYayUU",
+    "access_token_key": "15020700-gEZh9m4dHH3i7M5uMA0YOcGoWaNt9gfn3el4mo56c",
+    "access_token_secret": "bPHoD88cAxj1tCumk3UlwmkKmkYGFMXU29S4NMT5szh9n"
+  },
+  "youtube": "AIzaSyA06JaMhbBStEh24dZvk6tCkrtro9grVF0",
+  "instagram": {
+    "client_id": "9ebaba501ad6437da9e7dad0a5d1f680",
+    "client_secret": "c27eedc3036340fe9eb5ec9d083727b5",
+    "website_url": "http://chrisrussell.co",
+    "redirect_url": "http://chrisrussell.co"
+  },
+  "search": "javascript"
+}
