@@ -7,25 +7,55 @@
           integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ=="
           crossorigin="anonymous">
 </head>
+<style>
+    .grid-item {
+        width: 20%;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        background-color: orange;
+        color: white;
+    }
+</style>
 <body>
 
-<div class="container-fluid">
-    <div class="row">
-    </div>
+<div class="grid">
+
 </div>
 
 <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"
-        integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ=="
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fitvids/1.1.0/jquery.fitvids.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.min.js"></script>
-<script src="/socket.io/socket.io.js"></script>
+<script src="http://localhost:3001/socket.io/socket.io.js"></script>
 <script>
-    var socket = io.connect('http://127.0.0.1:3000');
+    var socket = io.connect('http://127.0.0.1:3001');
     socket.on('connection', function (data) {
         console.log(data);
     });
+
+    socket.on('update', function (data) {
+        writeHtml(data);
+    });
+
+    socket.on('totals', function (data) {
+        console.log(data);
+    });
+
+    var $grid;
+
+    function writeHtml(data) {
+        var item = $('<div class="grid-item">' + data.message_text + '</div>');
+
+        $grid.append(item)
+                .masonry('prepended', item);
+
+
+    }
+
+        $(function () {
+            $grid = $('.grid').masonry({
+                columnWidth: 160,
+                itemSelector: '.grid-item'
+            });
+        });
 </script>
 </body>
 </html>

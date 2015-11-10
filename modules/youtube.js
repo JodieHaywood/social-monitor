@@ -9,7 +9,7 @@ youTube.search(apiconfig.search, 10, function (error, result) {
 
     setInterval(function () {
         clean(result);
-    }, 60000);
+    }, 30000);
 
     function clean(data) {
         for (var i = 0, len = data.items.length; i < len; i++) {

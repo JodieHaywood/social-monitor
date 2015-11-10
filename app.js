@@ -10,9 +10,9 @@ io.on('connection', function (socket) {
 });
 
 require('./modules/error');
+require('./modules/events');
 require('./modules/twitter');
 require('./modules/youtube');
 require('./modules/instagram');
-require('./modules/events');
 
 app.listen(3000);
