@@ -11,11 +11,16 @@
     * {
         box-sizing: border-box
     }
+
     .grid {
-      margin: 0 auto;
-      width: 98%;
+        margin: 0 auto;
+        width: 98%;
     }
-    .grid-sizer { width: 20%; }
+
+    .grid-sizer {
+        width: 20%;
+    }
+
     .grid-item {
         width: 20%;
         border: 5px solid #fff;
@@ -23,26 +28,35 @@
         background-color: orange;
         color: white;
     }
+
     .grid-item * {
-      width: 100%;
-      height: initial;
+        width: 100%;
+        height: initial;
     }
 
-    .youtube { background-color: #2E2E3D;}
-    .instagram { background-color: #997B80;}
-    .twitter { background-color: #6E2845;}
+    .youtube {
+        background-color: #2E2E3D;
+    }
+
+    .instagram {
+        background-color: #997B80;
+    }
+
+    .twitter {
+        background-color: #6E2845;
+    }
 
 </style>
 <body>
 
 <div class="grid">
-  <div class="grid-sizer"></div>
+    <div class="grid-sizer"></div>
 
 </div>
 
 <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fitvids/1.1.0/jquery.fitvids.js"></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.min.js"></script>-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/fitvids/1.1.0/jquery.fitvids.js"></script>-->
 <script src="http://localhost:3001/socket.io/socket.io.js"></script>
 <script>
     var socket = io.connect('http://127.0.0.1:3001');
@@ -62,9 +76,13 @@
 
     function writeHtml(data) {
         var item;
+
         switch (data.message_source) {
             case "youtube":
-                item = $('<div class="grid-item youtube"><iframe width="560" height="315" src="https://www.youtube.com/embed/'+ data.message_id + '" frameborder="0" allowfullscreen></iframe><p>' + data.message_text + '</p></div>');
+                item = $('<div class="grid-item youtube"><iframe width="560" height="315" src="https://www.youtube.com/embed/' + data.message_id + '" frameborder="0" allowfullscreen></iframe><p>' + data.message_text + '</p></div>');
+                break;
+            case "instagram":
+                item = $('<div class="grid-item ' + data.message_source + '"><img src="' + data.message_meta.media.media_images.standard_resolution.url + '" alt=""/></div>');
                 break;
             default:
                 item = $('<div class="grid-item ' + data.message_source + '">' + data.message_text + '</div>');
@@ -75,10 +93,10 @@
 
     $(function () {
         $grid = $('.grid').masonry({
-          //columnWidth: 160,
+            //columnWidth: 160,
             /*columnWidth: function( containerWidth ) {
-                return containerWidth / 4;
-            },*/
+             return containerWidth / 4;
+             },*/
             itemSelector: '.grid-item',
             columnWidth: '.grid-sizer',
             percentPosition: true
