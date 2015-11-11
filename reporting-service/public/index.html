@@ -8,14 +8,18 @@
           crossorigin="anonymous">
 </head>
 <style>
-    html {
+    * {
         box-sizing: border-box
     }
+    .grid {
+      margin: 0 auto;
+      width: 98%;
+    }
+    .grid-sizer { width: 20%; }
     .grid-item {
         width: 20%;
-        margin-top: 10px;
-        padding: 10px 5px;
-        margin-bottom: 10px;
+        border: 5px solid #fff;
+        padding: 10px 10px;
         background-color: orange;
         color: white;
     }
@@ -27,11 +31,14 @@
     .youtube { background-color: #2E2E3D;}
     .instagram { background-color: #997B80;}
     .twitter { background-color: #6E2845;}
-    
+
 </style>
 <body>
 
-<div class="grid"></div>
+<div class="grid">
+  <div class="grid-sizer"></div>
+
+</div>
 
 <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.min.js"></script>
@@ -57,30 +64,24 @@
         var item;
         switch (data.message_source) {
             case "youtube":
-<<<<<<< HEAD
-                item = $('<div class="grid-item"><iframe width="560" height="315" src="https://www.youtube.com/embed/' + data.message_id + '" frameborder="0" allowfullscreen></iframe><p>' + data.message_text + '</p></div>');
-=======
                 item = $('<div class="grid-item youtube"><iframe width="560" height="315" src="https://www.youtube.com/embed/'+ data.message_id + '" frameborder="0" allowfullscreen></iframe><p>' + data.message_text + '</p></div>');
->>>>>>> 0f6ab92be33a445c50ee6d70bfcc4dcbc23804ce
                 break;
             default:
                 item = $('<div class="grid-item ' + data.message_source + '">' + data.message_text + '</div>');
         }
 
-<<<<<<< HEAD
-        $grid.append(item)
-                .masonry('prepended', item);
-=======
         $grid.append(item).masonry('prepended', item);
->>>>>>> 0f6ab92be33a445c50ee6d70bfcc4dcbc23804ce
     }
 
     $(function () {
         $grid = $('.grid').masonry({
-            columnWidth: function( containerWidth ) {
+          //columnWidth: 160,
+            /*columnWidth: function( containerWidth ) {
                 return containerWidth / 4;
-            },
-            itemSelector: '.grid-item'
+            },*/
+            itemSelector: '.grid-item',
+            columnWidth: '.grid-sizer',
+            percentPosition: true
         });
     });
 </script>
