@@ -8,7 +8,7 @@ var aSocket = ioClient.connect(global.apiconfig.node_address, {reconnect: true})
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-mongoose.connect('mongodb://localhost/social-monitor-' + global.apiconfig.search, function (error) {
+mongoose.connect('mongodb://localhost/social-monitor', function (error) {
     if (error) {
         throw error;
     }

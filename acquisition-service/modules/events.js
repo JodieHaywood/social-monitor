@@ -22,7 +22,7 @@ var messageSchema = new Schema({
 });
 var Message = mongoose.model('Message', messageSchema);
 
-mongoose.connect('mongodb://localhost/social-monitor-' + global.apiconfig.search, function (error) {
+mongoose.connect('mongodb://localhost/social-monitor', function (error) {
     if (error) {
         throw error;
     }
