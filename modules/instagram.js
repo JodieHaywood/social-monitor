@@ -5,7 +5,8 @@ Instagram.set('client_secret', apiconfig.instagram.client_secret);
 Instagram.set('callback_url', 'callback');
 
 Instagram.tags.recent({
-    name: apiconfig.search, complete: function (result) {
+    name: apiconfig.search,
+    complete: function (result) {
         setInterval(function () {
             clean(result);
         }, 1000);
@@ -17,13 +18,24 @@ Instagram.tags.recent({
                     message_id: data[i].id,
                     message_date: new Date(parseInt(data[i].created_time) * 1000),
                     message_source: "instagram",
-                    user: {
-                        user_id: data[i].user.id
+                    message_meta: {
+                        user: {
+                            user_id: data[i].user.id,
+                            user_username: data[i].user.username,
+                            user_full_name: data[i].user.full_name
+                        },
+                        media: {
+                            media_images: data[i].images
+                        },
+                        link: data[i].link
                     }
                 };
 
                 process.emit('smData', msg);
             }
         }
+    },
+    error: function (error) {
+        process.emit('smError', {source: 'instagram', error: error});
     }
 });

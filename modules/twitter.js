@@ -8,8 +8,14 @@ twitter.stream('statuses/filter', {track: apiconfig.search}, function (stream) {
             message_id: data.id,
             message_date: data.created_at,
             message_source: "twitter",
-            user: {
-                user_id: data.user.id
+            message_meta: {
+                user: {
+                    user_id: data.user.id.toString(),
+                    user_description: data.user.description,
+                    user_name: data.user.name,
+                    user_screen_name: data.user.screen_name
+                },
+                geo: data.geo
             }
         };
 
@@ -17,6 +23,6 @@ twitter.stream('statuses/filter', {track: apiconfig.search}, function (stream) {
     });
 
     stream.on('error', function (error) {
-        smError(error);
+        process.emit('smError', {source: 'twitter', error: error});
     });
 });

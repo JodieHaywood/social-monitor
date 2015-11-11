@@ -1,4 +1,5 @@
 {
+  "node_name": "acquisition1",
   "twitter": {
     "consumer_key": "nowUPLwMopITYkGJka0l2FpnZ",
     "consumer_secret": "PHUM4FPtXD2Kk749Y19w3g3cu58cCthfwhYLseLD8zFqjYayUU",
@@ -12,5 +13,5 @@
     "website_url": "http://chrisrussell.co",
     "redirect_url": "http://chrisrussell.co"
   },
-  "search": "javascript"
+  "search": "laugh4lungs"
 }
