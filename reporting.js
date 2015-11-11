@@ -45,6 +45,14 @@ aSocket.on('update', function (data) {
 
 io.on('connection', function (socket) {
     global.socket = socket;
+    // when first connected, get latest 20 from DB
+    Message.find().sort({_id:1}).limit(50).exec(function (err, results) {
+      results.forEach(
+        function(data) {
+          global.socket.emit('update', data);
+        }
+      );
+    });
 });
 
 
