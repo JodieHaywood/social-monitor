@@ -5,11 +5,10 @@ var app = require('http').createServer();
 var io = require('socket.io')(app);
 var os = require("os");
 
-require('./modules/error');
 require('./modules/events');
-require('./modules/twitter');
-require('./modules/youtube');
-require('./modules/instagram');
+require('./plugins/twitter');
+require('./plugins/youtube');
+require('./plugins/instagram');
 
 io.on('connection', function (socket) {
     global.socket = socket;

@@ -44,3 +44,7 @@ process.on('smData', function (data) {
         }
     });
 });
+
+process.on('smError', function (error) {
+    console.error(error);
+});
