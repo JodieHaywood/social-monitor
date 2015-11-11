@@ -1,5 +1,4 @@
 {
   "node_name": "reporting11",
-  "node_address": "http://localhost:3000/",
-  "search": "laugh4lungs"
+  "node_address": "http://localhost:3000/"
 }
