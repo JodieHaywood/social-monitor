@@ -14,7 +14,7 @@ global.acquisitionSocket.on('connection', function (data) {
     console.log(data);
 });
 
-require('./subscriptions.js');
+require('./modules/subscriptions.js');
 
 io.on('connection', function (socket) {
     global.socket = socket;
