@@ -1,14 +1,14 @@
+global.apiconfig = require('./config.json');
+global.socket = null;
+
 var app = require('http').createServer();
 var io = require('socket.io')(app);
 var ioClient = require('socket.io-client');
-global.socket = null;
-
-//TODO put in config
-var aSocket = ioClient.connect('http://localhost:3000', {reconnect: true});
-
+var aSocket = ioClient.connect(global.apiconfig.node_address, {reconnect: true});
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-mongoose.connect('mongodb://localhost/social-monitor', function (error) {
+
+mongoose.connect('mongodb://localhost/social-monitor-' + global.apiconfig.search, function (error) {
     if (error) {
         throw error;
     }
